@@ -9,7 +9,6 @@ pipeline {
     stage('Fluffy Build') {
       steps {
         sh 'whoami'
-        sh 'su jenkins'
         sh 'sh $WORKSPACE/buildjar.sh'
       }
     }
