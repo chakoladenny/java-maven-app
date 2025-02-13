@@ -10,6 +10,8 @@ pipeline {
       steps {
         echo 'Placeholder'
         sh 'echo "Another Placeholder"'
+        sh '''mvn --version
+sh $WORKSPACE/buildjar.sh'''
       }
     }
 
