@@ -10,11 +10,14 @@ pipeline {
       steps {
         echo 'Placeholder'
         sh 'echo "Another Placeholder"'
-        sh 'env'
+        sh 'env | grep -i maven'
         sh 'mvn --version'
         sh 'sh $WORKSPACE/buildjar.sh'
       }
     }
 
+  }
+  environment {
+    MAVEN_HOME = '/root/jenkins_worker/maven'
   }
 }
