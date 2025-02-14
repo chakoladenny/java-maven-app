@@ -22,19 +22,19 @@ pipeline {
             node {
               label 'docker_worker'
             }
-          }
-          
-          tools {
-            maven 'mvn3'  // Use the configured Maven tool
-          }
 
+          }
+          tools {
+            maven 'mvn3'
+          }
           environment {
-            MVN_HOME = tool 'mvn3'  // Set Maven Home
+            MVN_HOME = 'mvn3'  // Set Maven Home
             PATH = "${MVN_HOME}/bin:${env.PATH}"
           }
           steps {
-            sh 'whoami'
-            sh 'sh $WORKSPACE/buildjar.sh'
+            sh '''whoami
+printenv'''
+            sh 'mvn package'
             stash(name: 'java11', includes: 'target/**')
           }
         }
