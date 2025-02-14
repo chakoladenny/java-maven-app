@@ -107,14 +107,14 @@ printenv'''
       parallel {
         stage('Manual input') {
           steps {
-            timeout(time: 5, unit: 'SECONDS')
+            timeout(time: 20, unit: 'SECONDS')
             input(message: 'Deploy?', ok: 'yes')
           }
         }
 
         stage('manual inout 2') {
           steps {
-            timeout(time: 5, unit: 'SECONDS')
+            timeout(time: 20, unit: 'SECONDS')
             input(message: 'Deploy to docker', ok: 'yes')
           }
         }
