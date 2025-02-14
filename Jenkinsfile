@@ -8,23 +8,25 @@ pipeline {
   stages {
     stage('Fluffy Build') {
       steps {
-        echo 'Placeholder'
-        sh 'echo "Another Placeholder"'
+        sh 'sh $WORKSPACE/buildjar.sh'
       }
     }
 
     stage('Fluffy Test') {
       steps {
-        sh 'sleep 5'
-        sh 'echo Success!'
+        sh 'java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App'
       }
     }
 
     stage('Fluffy Deploy') {
       steps {
-        echo 'Placeholder'
+        sleep 5
+        echo 'Deployed'
       }
     }
 
+  }
+  environment {
+    LAB = 'dummy-lab'
   }
 }
