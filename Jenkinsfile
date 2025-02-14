@@ -28,7 +28,7 @@ pipeline {
             maven 'mvn3'
           }
           environment {
-            MVN_HOME = 'mvn3'  // Set Maven Home
+            MVN_HOME = 'mvn3'
             PATH = "${MVN_HOME}/bin:${env.PATH}"
           }
           steps {
@@ -130,6 +130,7 @@ printenv'''
 
           }
           steps {
+            unstash 'java17'
             archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
           }
         }
@@ -142,6 +143,7 @@ printenv'''
 
           }
           steps {
+            unstash 'java11'
             archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
           }
         }
