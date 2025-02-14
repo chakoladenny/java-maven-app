@@ -21,7 +21,7 @@ pipeline {
 
     stage('Fluffy Archive') {
       steps {
-        archiveArtifacts 'target/*.war'
+        archiveArtifacts 'target/my-app-1.0-SNAPSHOT.jar'
       }
     }
 
