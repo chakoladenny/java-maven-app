@@ -1,14 +1,10 @@
 pipeline {
-  agent {
-    docker {
-      image 'maven:3.9.2-eclipse-temurin-17'
-    }
-
-  }
+  agent none
   stages {
     stage('Fluffy Build') {
       agent any
       steps {
+        dockerNode(image: 'maven:3.9.2-eclipse-temurin-17')
         sh 'whoami'
         sh 'sh $WORKSPACE/buildjar.sh'
       }
