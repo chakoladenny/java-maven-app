@@ -107,15 +107,19 @@ printenv'''
       parallel {
         stage('Manual input') {
           steps {
-            timeout(time: 20, unit: 'SECONDS')
-            input(message: 'Deploy?', ok: 'yes')
+            timeout(time: 20, unit: 'SECONDS') {
+              input(message: 'Deploy to J-worker?', ok: 'yes')
+            }
+
           }
         }
 
         stage('manual inout 2') {
           steps {
-            timeout(time: 20, unit: 'SECONDS')
-            input(message: 'Deploy to docker', ok: 'yes')
+            timeout(time: 20, unit: 'SECONDS') {
+              input(message: 'Deploy to D-worker?', ok: 'yes')
+            }
+
           }
         }
 
