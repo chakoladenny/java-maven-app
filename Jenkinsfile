@@ -19,5 +19,11 @@ pipeline {
       }
     }
 
+    stage('Fluffy Archive') {
+      steps {
+        archiveArtifacts 'target/*.war'
+      }
+    }
+
   }
 }
