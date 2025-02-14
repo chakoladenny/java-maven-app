@@ -8,6 +8,7 @@ pipeline {
   stages {
     stage('Fluffy Build') {
       steps {
+        sh 'echo $WORKSPACE'
         sh 'sh $WORKSPACE/buildjar.sh'
       }
     }
