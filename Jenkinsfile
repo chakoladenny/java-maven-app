@@ -1,12 +1,17 @@
 pipeline {
-  agent none
+  agent {
+    node {
+      label 'docker_worker'
+    }
+
+  }
   stages {
     stage('Fluffy Build') {
       agent any
       steps {
-        dockerNode(image: 'maven:3.9.2-eclipse-temurin-17')
         sh 'whoami'
         sh 'sh $WORKSPACE/buildjar.sh'
+        stash(name: 'stash-1', includes: 'target/*.jar')
       }
     }
 
@@ -14,6 +19,7 @@ pipeline {
       parallel {
         stage('Fluffy Test') {
           steps {
+            unstash 'stash-1'
             sh 'java -cp target/my-app-1.0-SNAPSHOT.jar com.mycompany.app.App'
             junit '**/surefire-reports/**/*.xml'
           }
