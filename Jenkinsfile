@@ -21,7 +21,7 @@ pipeline {
 
     stage('Fluffy Archive') {
       steps {
-        archiveArtifacts 'target/my-app-1.0-SNAPSHOT.jar'
+        archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
       }
     }
 
