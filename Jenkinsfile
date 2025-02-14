@@ -22,7 +22,15 @@ pipeline {
             node {
               label 'docker_worker'
             }
+          }
+          
+          tools {
+            maven 'mvn3'  // Use the configured Maven tool
+          }
 
+          environment {
+            MVN_HOME = tool 'mvn3'  // Set Maven Home
+            PATH = "${MVN_HOME}/bin:${env.PATH}"
           }
           steps {
             sh 'whoami'
