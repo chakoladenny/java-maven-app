@@ -32,21 +32,22 @@ echo "a parallel stage - $AUTHOR"'''
       }
     }
 
-    stage('Fluffy Archive') {
-      parallel {
-        stage('Fluffy Archive') {
-          steps {
-            archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
-          }
-        }
-
-        stage('pstage2') {
-          steps {
-            sh '''sleep 8
+    stage('pstage2') {
+      steps {
+        sh '''sleep 8
 echo "final parallel stage - $AUTHOR"'''
-          }
-        }
+      }
+    }
 
+    stage('Manual input') {
+      steps {
+        input(message: 'Deploy?', ok: 'yes')
+      }
+    }
+
+    stage('Fluffy archive') {
+      steps {
+        archiveArtifacts(artifacts: 'target/*.jar', fingerprint: true)
       }
     }
 
