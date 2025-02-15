@@ -1,5 +1,9 @@
 pipeline {
   agent none
+  options {
+    durabilityHint 'MAX_SURVIVABILITY'
+    preserveStashes(buildCount: 5)
+  }
   stages {
     stage('Fluffy Build') {
       parallel {
